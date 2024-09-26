@@ -31,7 +31,6 @@
     "cmdk-sv": "^0.0.18",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "@rollup/rollup-linux-x64-gnu": "^4.17.2",
     "frontend": "file:",
     "helmet": "^7.1.0",
     "lucide-svelte": "^0.436.0",
