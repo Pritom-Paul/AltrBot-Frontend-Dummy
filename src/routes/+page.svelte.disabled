@@ -1,0 +1,191 @@
+<script lang="ts">
+	import ProtectedRoute from "$lib/components/ProtectedRoute.svelte";
+	import { onMount } from "svelte";
+	import { fade, fly } from "svelte/transition";
+	import { Card, CardContent, CardHeader, CardTitle } from "$lib/components/ui/card";
+	import { Progress } from "$lib/registry/new-york/ui/progress";
+	import { ArrowUp, Clock, FileText, FilePlus, Download, Send, BookOpen, Frown } from "lucide-svelte";
+
+	let usageCount = 0;
+	let timeSaved = 0;
+	let usageGoal = 2000;
+	let timeSavedGoal = 1000;
+	let poExtracted = 0;
+	let invoiceExtracted = 0;
+	let expDownloaded = 0;
+	let expIssued = 0;
+	let bookings = 0;
+	let fcr = 0;
+
+	onMount(() => {
+		// Simulating data fetching
+		usageCount = 1234;
+		timeSaved = 567;
+		poExtracted = 456;
+		invoiceExtracted = 789;
+		expDownloaded = 321;
+		expIssued = 654;
+		bookings = 200;
+		fcr = 95;
+	});
+</script>
+
+<ProtectedRoute>
+<main class="container mx-auto p-4 space-y-8">
+	<div
+		in:fade={{ duration: 300, delay: 300 }}
+		class="text-center mb-8"
+	>
+		<h1 class="text-4xl font-bold">Welcome to AltrBot</h1>
+		<p class="text-xl text-muted-foreground mt-2">Lets Make a Better World</p>
+	</div>
+
+	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 500 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<ArrowUp class="mr-2" />
+						Bot Usage
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{usageCount}</p>
+					<p class="text-muted-foreground mb-2">Total times used</p>
+					<Progress value={(usageCount / usageGoal) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 700 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<Clock class="mr-2" />
+						Time Saved
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{timeSaved} hours</p>
+					<p class="text-muted-foreground mb-2">Estimated time saved</p>
+					<Progress value={(timeSaved / timeSavedGoal) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 900 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<FileText class="mr-2" />
+						PO Extracted
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{poExtracted}</p>
+					<p class="text-muted-foreground mb-2">Purchase Orders processed</p>
+					<Progress value={(poExtracted / 1000) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 1100 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<FileText class="mr-2" />
+						Invoice Extracted
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{invoiceExtracted}</p>
+					<p class="text-muted-foreground mb-2">Invoices processed</p>
+					<Progress value={(invoiceExtracted / 1500) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 1300 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<Download class="mr-2" />
+						EXP Downloaded
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{expDownloaded}</p>
+					<p class="text-muted-foreground mb-2">Export permits downloaded</p>
+					<Progress value={(expDownloaded / 500) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 1500 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<Send class="mr-2" />
+						EXP Issued
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{expIssued}</p>
+					<p class="text-muted-foreground mb-2">Export permits issued</p>
+					<Progress value={(expIssued / 800) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<!-- New Booking Card -->
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 1700 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<BookOpen class="mr-2" />
+						Bookings
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{bookings}</p>
+					<p class="text-muted-foreground mb-2">Total bookings made</p>
+					<Progress value={(bookings / 300) * 100} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+
+		<!-- New FCR Card -->
+		<div
+			in:fly={{ y: 50, duration: 300, delay: 1900 }}
+		>
+			<Card class="transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+				<CardHeader>
+					<CardTitle class="flex items-center">
+						<FilePlus class="mr-2" />
+						FCR
+					</CardTitle>
+				</CardHeader>
+				<CardContent>
+					<p class="text-3xl font-semibold">{fcr}%</p>
+					<p class="text-muted-foreground mb-2">First Call Resolution rate</p>
+					<Progress value={fcr} class="mb-2" />
+				</CardContent>
+			</Card>
+		</div>
+	</div>
+</main>
+</ProtectedRoute>
